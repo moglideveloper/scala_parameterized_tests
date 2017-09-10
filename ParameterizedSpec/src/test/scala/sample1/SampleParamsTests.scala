@@ -32,8 +32,6 @@ class SampleParamsTests extends BaseSpec with BeforeAndAfterEach with BeforeAndA
 
   def x(s: String): Int = s.toInt
 
-  def displayx(i: Int): Unit = println(i)
-
   (1, "a" will "pass").withNoƒ { case () =>
     println("blah blah")
   }

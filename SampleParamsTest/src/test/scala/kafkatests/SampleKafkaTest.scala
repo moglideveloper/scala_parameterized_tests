@@ -1,7 +1,9 @@
 package kafkatests
 
-import testdata.BasicTestData
+import org.scalatest.Matchers._
 import paramtest._
+import testdata.BasicTestData
+
 import scala.util.Random
 
 /**
@@ -11,19 +13,18 @@ class SampleKafkaTest extends KafkaSpec with BasicTestData {
 
   val random = Random
 
-  def getValue(u: Unit): Int = {
-    random.nextInt(100)
+  def getValue(count: Int): Seq[String] = {
+    val msgs = for (i <- 1 to count) yield "msg no. " + i
+    msgs
   }
 
-  (1, "test no. 1" will "pass").with1ƒ (getValue _, ()) { x =>
+  (1, "test no. 1" will "pass").with1ƒ(getValue _, 3) { msgs =>
 
-    var i = x
-    while (true) {
-      i = i + 1
-      publishStringMessageToKafka("abcd", i + ". hello from embedded kafka spec")
-
-      Thread.sleep(5678)
-    }
+    writeToKafka("test", msgs)
+    Thread.sleep(3210)
+    val responseMsgs = consumeFromKafka("test")
+    responseMsgs foreach println
+    msgs should be(responseMsgs)
   }
 
   executeTests()
