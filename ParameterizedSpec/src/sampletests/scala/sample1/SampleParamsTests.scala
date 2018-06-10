@@ -1,14 +1,14 @@
 package sample1
 
-import paramtest._
 import org.scalatest.Matchers._
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach}
+import paramtest._
 
 
 /**
   * Created by mogli on 8/29/17.
   */
-class SampleParamsTests extends BaseSpec with BeforeAndAfterEach with BeforeAndAfterAll {
+class SampleParamsTests extends  BaseSpec with BeforeAndAfterEach with BeforeAndAfterAll {
 
   override protected def beforeEach(): Unit = {
     super.beforeEach()

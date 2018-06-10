@@ -10,9 +10,12 @@ libraryDependencies += "org.hamcrest" % "hamcrest-all" % "1.3"
 libraryDependencies += "pl.pragmatists" % "JUnitParams" % "1.0.4"
 libraryDependencies += "junit" % "junit" % "4.12"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0"
+libraryDependencies += "org.scala-lang" % "scala-library" % "2.11.7"
 
 // https://mvnrepository.com/artifact/com.typesafe/config
 libraryDependencies += "com.typesafe" % "config" % "1.3.1"
+unmanagedSourceDirectories in Test +=  (baseDirectory in Test).value / "src/sampletests/scala"
+unmanagedResourceDirectories in Test += (baseDirectory in Test).value / "src/sampletests/resources"
 
 // To sync with Maven central, you need to supply the following information:
 publishMavenStyle := true
